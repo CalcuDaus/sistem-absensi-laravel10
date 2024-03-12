@@ -344,7 +344,7 @@ canvas {
 
 .content::before {
   content: "";
-  background: url("../img/baloon.png");
+  /* background: url("../img/baloon.png"); */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -367,7 +367,7 @@ canvas {
 
 .title-container::after {
   content: "";
-  background: url("../img/baloon.png");
+  /* background: url("../img/baloon.png"); */
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;

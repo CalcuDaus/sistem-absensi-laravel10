@@ -219,6 +219,12 @@
         <span class="loader"></span>
         <span class="text-loader">Loading...</span>
     </div>
+    @if (session()->has('error'))
+        <div class="alert alert-danger shadow position-absolute" style="top: 2%;right: 2%"
+            onclick="hideElement(this)">
+            {{ session('error') }} <i class="ms-2 fa-solid fa-x c-pointer"></i>
+        </div>
+    @endif
 
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
