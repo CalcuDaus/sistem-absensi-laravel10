@@ -17,6 +17,7 @@ class AkunController extends Controller
             'title' => 'Master Data',
             'dt_user' => $dt_user,
         ];
+
         return view('akun.V_akun', $data);
     }
     public function create()
