@@ -74,6 +74,12 @@
                                             <span>Instruktur</span>
                                         </a>
                                     </li>
+                                    <li class="mt-2">
+                                        <a href="/admin/akun" class="d-flex align-items-center">
+                                            <i class="fa-solid fa-crosshairs pe-2"></i>
+                                            <span>Akun</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>

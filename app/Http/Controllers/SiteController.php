@@ -63,18 +63,29 @@ class SiteController extends Controller
             'dt_siswa' => Siswa::all()
         ];
 
-        return view('V_form_absensi', $data);
+        return view('absen.V_form_absensi', $data);
+    }
+    public function instrukturAbsen()
+    {
+        $data = [
+            'title' => 'Sistem Absensi',
+            'dt_sekolah' => Sekolah::all(),
+            'dt_jurusan' => Jurusan::all(),
+            'dt_siswa' => Siswa::all()
+        ];
+
+        return view('absen.V_form_absen_instruktur', $data);
     }
     public function success()
     {
-        return view('V_absen_berhasil');
+        return view('absen.V_absen_berhasil');
     }
     public function lokasi()
     {
-        return view('V_error_lokasi');
+        return view('absen.V_error_lokasi');
     }
     public function absenError()
     {
-        return view('V_error_absen');
+        return view('absen.V_error_absen');
     }
 }

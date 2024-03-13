@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AkunController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\InstrukturController;
 use App\Http\Controllers\JurusanController;
@@ -41,7 +42,13 @@ Route::middleware('auth')->group(function () {
     Route::prefix('/admin')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('dashboard');
         Route::get('/pengaturan', [PengaturanController::class, 'index']);
+
+        // Instuktur 
         Route::get('/absen', [AbsenController::class, 'index'])->name('absen');
+        Route::get('/absen/instruktur', [SiteController::class, 'instrukturAbsen'])->name('absen.instruktur');
+        Route::post('/absen/instruktur', [AbsenController::class, 'instrukturStore'])->name('tambah.absen.instruktur');
+
+        // Admin
         Route::middleware('userAccess:admin')->group(function () {
             Route::prefix('/sekolah')->group(function () {
                 Route::get('/', [SekolahController::class, 'index'])->name('sekolah');
@@ -82,6 +89,14 @@ Route::middleware('auth')->group(function () {
                 Route::post('/tambah', [SiswaController::class, 'store'])->name('tambah.siswa');
                 Route::put('/edit/{id}', [SiswaController::class, 'update'])->name('edit.siswa');
                 Route::delete('/hapus/{id}', [SiswaController::class, 'destroy'])->name('hapus.siswa');
+            });
+            Route::prefix('/akun')->group(function () {
+                Route::get('/', [AkunController::class, 'index'])->name('akun');
+                Route::get('/tambah', [AkunController::class, 'create']);
+                Route::get('/edit/{id}', [AkunController::class, 'edit'])->name('url.edit.akun');
+                Route::post('/tambah', [AkunController::class, 'store'])->name('tambah.akun');
+                Route::put('/edit/{id}', [AkunController::class, 'update'])->name('edit.akun');
+                Route::delete('/hapus/{id}', [AkunController::class, 'destroy'])->name('hapus.akun');
             });
         });
     });

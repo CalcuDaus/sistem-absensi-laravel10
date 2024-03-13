@@ -30,10 +30,9 @@ class PeriodeController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'periode' => 'required|min:10'
+            'periode' => 'required'
         ], [
             'required' => 'Nama :attribute Harus Diisi !',
-            'min' => 'Nama :attribute Minimal 10 Huruf !',
         ]);
         if ($validator->fails()) {
             return redirect()->route('tambah.periode')
@@ -63,10 +62,9 @@ class PeriodeController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'periode' => 'required|min:10',
+            'periode' => 'required',
         ], [
             'required' => 'Nama :attribute Harus Diisi !',
-            'min' => 'Nama :attribute Minimal 10 Huruf !',
         ]);
         if ($validator->fails()) {
             return redirect()->route('url.edit.periode', $id)

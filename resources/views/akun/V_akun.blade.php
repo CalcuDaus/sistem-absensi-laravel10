@@ -11,37 +11,36 @@
     <!-- end section title -->
     <!-- section main content -->
     <section class="container container-content position-relative">
+        <h2>Akun Pengguna</h2>
         <div class="row w-100">
             <div class="col custom-card shadow-card overflow-x-auto position-relative">
                 <div class="mt-2">
-                    <a href="/admin/sekolah/tambah" class="btn btn-success mb-3"><i class="fa-solid fa-plus bold"></i>
+                    <a href="/admin/akun/tambah" class="btn btn-success mb-3"><i class="fa-solid fa-plus bold"></i>
                         Tambah</a>
                     <table id="example" class="display hover" style="width: 100%">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>
-                                <th>Keterangan</th>
-                                <th>Sub Keterangan</th>
-                                <th>Waktu Absen</th>
+                                <th>Email</th>
+                                <th>Level</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php $i = 1; ?>
-                            @forelse ($dt_absen as $a)
+                            @forelse ($dt_user as $s)
                                 <tr>
                                     <td>{{ $i++ }}</td>
-                                    <td>{{ $a['nama'] }}</td>
-                                    <td>{{ $a['keterangan'] }}</td>
-                                    <td>{{ $a['sub_keterangan'] }}</td>
-                                    <td>{{ $a['waktu_absen'] }}</td>
+                                    <td>{{ $s->nama }}</td>
+                                    <td>{{ $s->email }}</td>
+                                    <td>{{ $s->level }}</td>
                                     <td>
                                         <form id="deleteForm" onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                            action="{{ route('hapus.sekolah', $a['id']) }}" method="POST">
+                                            action="{{ route('hapus.akun', $s->id) }}" method="POST">
                                             @csrf
                                             @method('delete')
-                                            <a href="{{ route('url.edit.sekolah', $a['id']) }}" title="Edit"
+                                            <a href="{{ route('url.edit.akun', $s->id) }}" title="Edit"
                                                 class="btn btn-info"><i class="fa-solid fa-pen text-white"></i></a>
                                             <button type="submit"title="Hapus" class="btn btn-danger"><i
                                                     class="fa-solid fa-eraser text-white"></i></button>
@@ -50,7 +49,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="2">Data Sekolah Tidak Tersedia</td>
+                                    <td colspan="2">Data Akun Tidak Tersedia</td>
                                 </tr>
                             @endforelse
                         </tbody>

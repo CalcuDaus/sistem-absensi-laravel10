@@ -21,7 +21,8 @@ class User extends Authenticatable
         'nama',
         'email',
         'password',
-        'level'
+        'level',
+        'instruktur_user_id',
     ];
 
     /**
