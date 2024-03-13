@@ -73,4 +73,8 @@ class SiteController extends Controller
     {
         return view('V_error_lokasi');
     }
+    public function absenError()
+    {
+        return view('V_error_absen');
+    }
 }

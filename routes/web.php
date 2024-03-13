@@ -34,6 +34,7 @@ Route::post('/login', [SiteController::class, 'login'])->name('login');
 Route::get('/lab/{nomor}', [SiteController::class, 'lab'])->name('lab');
 Route::get('/berhasil', [SiteController::class, 'success'])->name('berhasil.absen');
 Route::get('/error/lokasi', [SiteController::class, 'lokasi'])->name('error.lokasi');
+Route::get('/error/absen', [SiteController::class, 'absenError'])->name('error.absen');
 Route::post('/tambah/absen', [AbsenController::class, 'store'])->name('tambah.absen');
 
 Route::middleware('auth')->group(function () {
