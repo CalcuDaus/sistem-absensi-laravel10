@@ -13,7 +13,11 @@ class AkunController extends Controller
     public function index()
     {
         $dt_user = User::where('level', '=', 'instruktur')->get();
+        $dt_notifikasi = getNotif(auth()->user()->instruktur_user_id);
+        $count_notif = getNotifCount(auth()->user()->instruktur_user_id);
         $data = [
+            'dt_notifikasi' => $dt_notifikasi,
+            'c_notif' => $count_notif,
             'title' => 'Master Data',
             'dt_user' => $dt_user,
         ];
@@ -22,7 +26,11 @@ class AkunController extends Controller
     }
     public function create()
     {
+        $dt_notifikasi = getNotif(auth()->user()->instruktur_user_id);
+        $count_notif = getNotifCount(auth()->user()->instruktur_user_id);
         $data = [
+            'dt_notifikasi' => $dt_notifikasi,
+            'c_notif' => $count_notif,
             'title' => 'Master Data',
             'aksi' => 'Tambah',
             'dt_user' => '',
@@ -33,8 +41,8 @@ class AkunController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nama' => 'required|min:5',
-            'email' => 'email|required|min:5',
+            'nama' => 'required|min:4',
+            'email' => 'email|required|min:4',
             'password' => 'required',
             'instruktur' => 'required'
         ], [
@@ -65,7 +73,11 @@ class AkunController extends Controller
     public function edit($id)
     {
         $dt_user = User::findOrFail($id);
+        $dt_notifikasi = getNotif(auth()->user()->instruktur_user_id);
+        $count_notif = getNotifCount(auth()->user()->instruktur_user_id);
         $data = [
+            'dt_notifikasi' => $dt_notifikasi,
+            'c_notif' => $count_notif,
             'title' => 'Master Data',
             'aksi' => 'Edit',
             'dt_user' => $dt_user

@@ -11,7 +11,11 @@ class JurusanController extends Controller
     public function index()
     {
         $dt_jurusan = Jurusan::all();
+        $dt_notifikasi = getNotif(auth()->user()->instruktur_user_id);
+        $count_notif = getNotifCount(auth()->user()->instruktur_user_id);
         $data = [
+            'dt_notifikasi' => $dt_notifikasi,
+            'c_notif' => $count_notif,
             'title' => 'Master Data',
             'dt_jurusan' => $dt_jurusan,
         ];
@@ -20,7 +24,11 @@ class JurusanController extends Controller
     }
     public function create()
     {
+        $dt_notifikasi = getNotif(auth()->user()->instruktur_user_id);
+        $count_notif = getNotifCount(auth()->user()->instruktur_user_id);
         $data = [
+            'dt_notifikasi' => $dt_notifikasi,
+            'c_notif' => $count_notif,
             'title' => 'Master Data',
             'aksi' => 'Tambah',
             'dt_jurusan' => ''
@@ -54,7 +62,11 @@ class JurusanController extends Controller
     public function edit($id)
     {
         $dt_jurusan = Jurusan::findOrFail($id);
+        $dt_notifikasi = getNotif(auth()->user()->instruktur_user_id);
+        $count_notif = getNotifCount(auth()->user()->instruktur_user_id);
         $data = [
+            'dt_notifikasi' => $dt_notifikasi,
+            'c_notif' => $count_notif,
             'title' => 'Master Data',
             'aksi' => 'Edit',
             'dt_jurusan' => $dt_jurusan

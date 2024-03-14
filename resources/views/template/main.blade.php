@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ $title }}</title>
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
@@ -88,6 +89,10 @@
                             <img src="{{ asset('assets/img/icons-user.png') }}" width="22px" alt="" />
                             <a href="{{ route('absen') }}">Absen Siswa</a>
                         </li>
+                        <li class="nav-btn {{ $title === 'Data Siswa' ? 'nav-btn-active' : '' }}">
+                            <img src="{{ asset('assets/img/icons-user.png') }}" width="22px" alt="" />
+                            <a href="{{ route('data.siswa') }}">Data Siswa</a>
+                        </li>
                     @endif
                 @endauth
                 <!-- E: Table -->
@@ -116,74 +121,7 @@
                         alt="" />
                     <input type="text" autofocus placeholder="search.." class="search-field" />
                 </div>
-                <div class="notif">
-                    <img src="{{ asset('assets/img/icons-notification.png') }}" class="ms-4 icon-img" alt="" />
-                    <div class="notif-count">2</div>
-                    <div class="container-notif">
-                        <div class="container">
-                            <div class="row li-notif d-flex justify-content-center pt-3 pb-3 align-items-center">
-                                <div class="col-1"><i class="fa-solid fa-envelope"></i></div>
-                                <div class="col-7">
-                                    <p class="fs-8">4 New Messages</p>
-                                </div>
-                                <div class="col-3">
-                                    <p class="fs-7">3 mins</p>
-                                </div>
-                            </div>
-                            <div class="row li-notif d-flex justify-content-center pt-3 pb-3 align-items-center">
-                                <div class="col-1"><i class="fa-solid fa-envelope"></i></div>
-                                <div class="col-7">
-                                    <p class="fs-8">4 New Messages</p>
-                                </div>
-                                <div class="col-3">
-                                    <p class="fs-7">3 mins</p>
-                                </div>
-                            </div>
-                            <div class="row li-notif d-flex justify-content-center pt-3 pb-3 align-items-center">
-                                <div class="col-1"><i class="fa-solid fa-envelope"></i></div>
-                                <div class="col-7">
-                                    <p class="fs-8">4 New Messages</p>
-                                </div>
-                                <div class="col-3">
-                                    <p class="fs-7">3 mins</p>
-                                </div>
-                            </div>
-                            <div class="row li-notif d-flex justify-content-center pt-3 pb-3 align-items-center">
-                                <div class="col-1"><i class="fa-solid fa-envelope"></i></div>
-                                <div class="col-7">
-                                    <p class="fs-8">4 New Messages</p>
-                                </div>
-                                <div class="col-3">
-                                    <p class="fs-7">3 mins</p>
-                                </div>
-                            </div>
-                            <div class="row li-notif d-flex justify-content-center pt-3 pb-3 align-items-center">
-                                <div class="col-1"><i class="fa-solid fa-envelope"></i></div>
-                                <div class="col-7">
-                                    <p class="fs-8">4 New Messages</p>
-                                </div>
-                                <div class="col-3">
-                                    <p class="fs-7">3 mins</p>
-                                </div>
-                            </div>
-
-                            <div class="row li-notif d-flex justify-content-center pt-3 pb-3 align-items-center">
-                                <div class="col-1"><i class="fa-solid fa-envelope"></i></div>
-                                <div class="col-7">
-                                    <p class="fs-8">4 New Messages</p>
-                                </div>
-                                <div class="col-3">
-                                    <p class="fs-7">3 mins</p>
-                                </div>
-                            </div>
-                            <div class="row li-notif d-flex justify-content-center pt-3 pb-3 align-items-center">
-                                <div class="col">
-                                    <p class="fs-8">Show All Notification</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @include('template.notif')
                 <div class="button-theme ms-3">
                     <button>
                         <i class="fa-solid fa-circle-half-stroke icon-img"></i>

@@ -39,10 +39,10 @@
                                     <td>{{ $a['waktu_absen'] }}</td>
                                     <td>
                                         <form id="deleteForm" onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                            action="{{ route('hapus.sekolah', $a['id']) }}" method="POST">
+                                            action="{{ route('hapus.absen', $a['id']) }}" method="POST">
                                             @csrf
                                             @method('delete')
-                                            <a href="{{ route('url.edit.sekolah', $a['id']) }}" title="Edit"
+                                            <a href="{{ route('url.edit.absen', $a['id']) }}" title="Edit"
                                                 class="btn btn-info"><i class="fa-solid fa-pen text-white"></i></a>
                                             <button type="submit"title="Hapus" class="btn btn-danger"><i
                                                     class="fa-solid fa-eraser text-white"></i></button>

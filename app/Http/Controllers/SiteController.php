@@ -56,6 +56,7 @@ class SiteController extends Controller
         //     return redirect()->route('error.lokasi');
         // }
 
+
         $data = [
             'title' => 'Sistem Absensi',
             'dt_sekolah' => Sekolah::all(),
@@ -67,7 +68,11 @@ class SiteController extends Controller
     }
     public function instrukturAbsen()
     {
+        $dt_notifikasi = getNotif(auth()->user()->instruktur_user_id);
+        $count_notif = getNotifCount(auth()->user()->instruktur_user_id);
         $data = [
+            'dt_notifikasi' => $dt_notifikasi,
+            'c_notif' => $count_notif,
             'title' => 'Sistem Absensi',
             'dt_sekolah' => Sekolah::all(),
             'dt_jurusan' => Jurusan::all(),

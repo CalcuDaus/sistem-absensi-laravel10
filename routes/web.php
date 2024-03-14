@@ -11,6 +11,7 @@ use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SiteController;
+use App\Models\Absen;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,6 +48,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/absen', [AbsenController::class, 'index'])->name('absen');
         Route::get('/absen/instruktur', [SiteController::class, 'instrukturAbsen'])->name('absen.instruktur');
         Route::post('/absen/instruktur', [AbsenController::class, 'instrukturStore'])->name('tambah.absen.instruktur');
+        Route::get('/absen/data-siswa', [AbsenController::class, 'dataSiswa'])->name('data.siswa');
+        Route::get('/edit/{id}', [AbsenController::class, 'edit'])->name('url.edit.absen');
+        Route::delete('/hapus/{id}', [AbsenController::class, 'destroy'])->name('hapus.absen');
 
         // Admin
         Route::middleware('userAccess:admin')->group(function () {

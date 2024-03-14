@@ -11,7 +11,11 @@ class SekolahController extends Controller
     public function index()
     {
         $dt_sekolah = Sekolah::all();
+        $dt_notifikasi = getNotif(auth()->user()->instruktur_user_id);
+        $count_notif = getNotifCount(auth()->user()->instruktur_user_id);
         $data = [
+            'dt_notifikasi' => $dt_notifikasi,
+            'c_notif' => $count_notif,
             'title' => 'Master Data',
             'dt_sekolah' => $dt_sekolah,
         ];
@@ -20,7 +24,11 @@ class SekolahController extends Controller
     }
     public function create()
     {
+        $dt_notifikasi = getNotif(auth()->user()->instruktur_user_id);
+        $count_notif = getNotifCount(auth()->user()->instruktur_user_id);
         $data = [
+            'dt_notifikasi' => $dt_notifikasi,
+            'c_notif' => $count_notif,
             'title' => 'Master Data',
             'aksi' => 'Tambah',
             'dt_sekolah' => ''
@@ -52,7 +60,11 @@ class SekolahController extends Controller
     public function edit($id)
     {
         $dt_sekolah = Sekolah::findOrFail($id);
+        $dt_notifikasi = getNotif(auth()->user()->instruktur_user_id);
+        $count_notif = getNotifCount(auth()->user()->instruktur_user_id);
         $data = [
+            'dt_notifikasi' => $dt_notifikasi,
+            'c_notif' => $count_notif,
             'title' => 'Master Data',
             'aksi' => 'Edit',
             'dt_sekolah' => $dt_sekolah

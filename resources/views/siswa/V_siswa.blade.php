@@ -15,8 +15,10 @@
         <div class="row w-100">
             <div class="col custom-card shadow-card overflow-x-auto position-relative">
                 <div class="mt-2">
-                    <a href="/admin/siswa/tambah" class="btn btn-success mb-3"><i class="fa-solid fa-plus bold"></i>
-                        Tambah</a>
+                    @if ($title != 'Data Siswa')
+                        <a href="/admin/siswa/tambah" class="btn btn-success mb-3"><i class="fa-solid fa-plus bold"></i>
+                            Tambah</a>
+                    @endif
                     <table id="example" class="display hover" style="width: 100%">
                         <thead>
                             <tr>
@@ -28,7 +30,9 @@
                                 <th>Sekolah</th>
                                 <th>Jurusan</th>
                                 <th>Periode</th>
-                                <th>Aksi</th>
+                                @if ($title != 'Data Siswa')
+                                    <th>Aksi</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -43,17 +47,20 @@
                                     <td>{{ $s->sekolah }}</td>
                                     <td>{{ $s->jurusan }}</td>
                                     <td>{{ $s->periode }}</td>
-                                    <td>
-                                        <form id="deleteForm" onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                            action="{{ route('hapus.siswa', $s->id_siswa) }}" method="POST">
-                                            @csrf
-                                            @method('delete')
-                                            <a href="{{ route('url.edit.siswa', $s->id_siswa) }}" title="Edit"
-                                                class="btn btn-info"><i class="fa-solid fa-pen text-white"></i></a>
-                                            <button type="submit"title="Hapus" class="btn btn-danger"><i
-                                                    class="fa-solid fa-eraser text-white"></i></button>
-                                        </form>
-                                    </td>
+                                    @if ($title != 'Data Siswa')
+                                        <td>
+                                            <form id="deleteForm" onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                                action="{{ route('hapus.siswa', $s->id_siswa) }}" method="POST">
+                                                @csrf
+                                                @method('delete')
+                                                <a href="{{ route('url.edit.siswa', $s->id_siswa) }}" title="Edit"
+                                                    class="btn btn-info"><i class="fa-solid fa-pen text-white"></i></a>
+                                                <button type="submit"title="Hapus" class="btn btn-danger"><i
+                                                        class="fa-solid fa-eraser text-white"></i></button>
+                                            </form>
+                                        </td>
+                                    @endif
+
                                 </tr>
                             @empty
                                 <tr>

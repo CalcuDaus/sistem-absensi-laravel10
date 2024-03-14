@@ -11,7 +11,11 @@ class InstrukturController extends Controller
     public function index()
     {
         $dt_instruktur = Instruktur::all();
+        $dt_notifikasi = getNotif(auth()->user()->instruktur_user_id);
+        $count_notif = getNotifCount(auth()->user()->instruktur_user_id);
         $data = [
+            'dt_notifikasi' => $dt_notifikasi,
+            'c_notif' => $count_notif,
             'title' => 'Master Data',
             'dt_instruktur' => $dt_instruktur,
         ];
@@ -20,7 +24,11 @@ class InstrukturController extends Controller
     }
     public function create()
     {
+        $dt_notifikasi = getNotif(auth()->user()->instruktur_user_id);
+        $count_notif = getNotifCount(auth()->user()->instruktur_user_id);
         $data = [
+            'dt_notifikasi' => $dt_notifikasi,
+            'c_notif' => $count_notif,
             'title' => 'Master Data',
             'aksi' => 'Tambah',
             'dt_instruktur' => ''
@@ -31,7 +39,7 @@ class InstrukturController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'email' => 'email|required|min:5',
-            'nama' => 'required|min:5',
+            'nama' => 'required',
             'lab' => 'required'
         ], [
             'email' => 'Format :attribute Harus Berupa Email @ !',
@@ -59,7 +67,11 @@ class InstrukturController extends Controller
     public function edit($id)
     {
         $dt_instruktur = Instruktur::findOrFail($id);
+        $dt_notifikasi = getNotif(auth()->user()->instruktur_user_id);
+        $count_notif = getNotifCount(auth()->user()->instruktur_user_id);
         $data = [
+            'dt_notifikasi' => $dt_notifikasi,
+            'c_notif' => $count_notif,
             'title' => 'Master Data',
             'aksi' => 'Edit',
             'dt_instruktur' => $dt_instruktur
