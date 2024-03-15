@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jurusan;
+use App\Models\NotifikasiBaca;
 use App\Models\Sekolah;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
@@ -80,6 +81,15 @@ class SiteController extends Controller
         ];
 
         return view('absen.V_form_absen_instruktur', $data);
+    }
+    public function notifStore(Request $request)
+    {
+        NotifikasiBaca::create([
+            'dibaca' => 1,
+            'notifikasi_id' => $request->notif_id,
+            'notifikasi_user_id' => auth()->user()->id
+        ]);
+        return redirect($request->url);
     }
     public function success()
     {

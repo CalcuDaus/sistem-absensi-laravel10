@@ -46,8 +46,11 @@ if (!function_exists('getNotif')) {
     {
         $dt_notifikasi = Notifikasi::leftJoin('notifikasi_bacas', 'notifikasis.id', '=', 'notifikasi_bacas.notifikasi_id')
             ->where('notif_instruktur_id', '=', $param)
-            ->where('notifikasi_bacas.dibaca', '=', null)
-            ->select('*', 'notifikasis.created_at as waktu_notif')
+            ->select(
+                '*',
+                'notifikasis.created_at as waktu_notif',
+                'notifikasis.id as notif_id'
+            )
             ->get();
 
         return $dt_notifikasi;
@@ -56,10 +59,14 @@ if (!function_exists('getNotif')) {
 if (!function_exists('getNotifCount')) {
     function getNotifCount($param)
     {
-        $dt_notifikasi = Notifikasi::leftJoin('notifikasi_bacas', 'notifikasis.id', '=', 'notifikasi_bacas.notifikasi_id')
+        $dt_notifikasi =  Notifikasi::leftJoin('notifikasi_bacas', 'notifikasis.id', '=', 'notifikasi_bacas.notifikasi_id')
             ->where('notif_instruktur_id', '=', $param)
+            ->select(
+                '*',
+                'notifikasis.created_at as waktu_notif',
+                'notifikasis.id as notif_id'
+            )
             ->where('notifikasi_bacas.dibaca', '=', null)
-            ->select('*', 'notifikasis.created_at as waktu_notif')
             ->get()
             ->count();
 

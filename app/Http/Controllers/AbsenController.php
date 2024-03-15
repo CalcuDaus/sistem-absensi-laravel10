@@ -6,7 +6,6 @@ use App\Models\Absen;
 use App\Models\Instruktur;
 use App\Models\Notifikasi;
 use App\Models\Siswa;
-use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;

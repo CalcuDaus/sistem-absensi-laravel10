@@ -178,3 +178,7 @@ function showConfirmation() {
       }
   });
 }
+document.getElementById("formSubmit").addEventListener("click", function(event) {
+  event.preventDefault(); 
+  document.getElementById("formSubmit").submit(); 
+});

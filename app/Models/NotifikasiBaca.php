@@ -12,5 +12,6 @@ class NotifikasiBaca extends Model
         'id',
         'dibaca',
         'notifikasi_id',
+        'notifikasi_user_id'
     ];
 }

@@ -264,7 +264,7 @@ hr {
 }
 
 .li-notif:hover {
-  background-color: var(--cyan);
+  background-color: #2c333ce0;
   cursor: pointer;
 }
 
