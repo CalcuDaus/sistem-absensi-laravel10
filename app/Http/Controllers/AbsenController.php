@@ -59,7 +59,7 @@ class AbsenController extends Controller
         }
         return redirect()->route('error.absen')->with(['error' => 'Anda Sudah Melakukan Absen Hari Ini !']);
     }
-    public function edit(Request $request, $id)
+    public function edit($id)
     {
         $dt_absen = Absen::findOrFail($id);
         $dt_notifikasi = getNotif(auth()->user()->instruktur_user_id);

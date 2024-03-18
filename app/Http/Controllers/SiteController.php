@@ -47,7 +47,7 @@ class SiteController extends Controller
         Auth::logout();
         return redirect()->route('home');
     }
-    public function lab(Request $request, $nomor)
+    public function lab(Request $request)
     {
         // $clientIP = ip2long($request->getClientIp());
         // $startIP = ip2long('192.168.55.1');
