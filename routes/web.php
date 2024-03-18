@@ -52,6 +52,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/tambah/dibaca/', [SiteController::class, 'notifStore'])->name('tambah.dibaca');
         Route::get('/absen/data-siswa', [AbsenController::class, 'dataSiswa'])->name('data.siswa');
         Route::get('/edit/{id}', [AbsenController::class, 'edit'])->name('url.edit.absen');
+        Route::post('/edit/{id}', [AbsenController::class, 'update'])->name('url.update.absen');
         Route::delete('/hapus/{id}', [AbsenController::class, 'destroy'])->name('hapus.absen');
 
         // Admin

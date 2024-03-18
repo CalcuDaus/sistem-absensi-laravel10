@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Exports\ExportAbsen;
 use App\Models\Absen;
 use App\Models\Instruktur;
+use App\Models\Jurusan;
 use App\Models\Notifikasi;
+use App\Models\Sekolah;
 use App\Models\Siswa;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -56,6 +58,45 @@ class AbsenController extends Controller
             return redirect()->route('berhasil.absen');
         }
         return redirect()->route('error.absen')->with(['error' => 'Anda Sudah Melakukan Absen Hari Ini !']);
+    }
+    public function edit(Request $request, $id)
+    {
+        $dt_absen = Absen::findOrFail($id);
+        $dt_notifikasi = getNotif(auth()->user()->instruktur_user_id);
+        $count_notif = getNotifCount(auth()->user()->instruktur_user_id);
+        $data = [
+            'dt_notifikasi' => $dt_notifikasi,
+            'c_notif' => $count_notif,
+            'title' => 'Sistem Absensi',
+            'dt_sekolah' => Sekolah::all(),
+            'dt_jurusan' => Jurusan::all(),
+            'dt_siswa' => Siswa::all(),
+            'dt_absen' => $dt_absen
+        ];
+        return view('absen.V_edit_absen', $data);
+    }
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'sub_keterangan' => 'required'
+        ], [
+            'required' => ':attribute harus diisi !'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('url.edit.absen', $id)
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $absen = Absen::findOrFail($id);
+
+        $query = $absen->update([
+            'keterangan' => $request->input('keterangan'),
+            'sub_keterangan' => $request->input('sub_keterangan'),
+        ]);
+        if ($query) {
+            return redirect()->route('absen')->with(['success' => 'Data Berhasil Di Ubah !']);
+        }
     }
     public function instrukturStore(Request $request)
     {
