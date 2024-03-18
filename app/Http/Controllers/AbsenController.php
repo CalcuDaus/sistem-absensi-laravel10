@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ExportAbsen;
 use App\Models\Absen;
 use App\Models\Instruktur;
 use App\Models\Notifikasi;
@@ -9,6 +10,7 @@ use App\Models\Siswa;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AbsenController extends Controller
 {
@@ -176,5 +178,9 @@ class AbsenController extends Controller
             return redirect()->route('absen')->with(['success' => 'Data Berhasil Di Hapus !']);
         }
         return redirect()->route('absen')->withErrors(['error' => 'Data Gagal Di Hapus !']);
+    }
+    public function export_excel()
+    {
+        return Excel::download(new ExportAbsen, "absen.xlsx");
     }
 }

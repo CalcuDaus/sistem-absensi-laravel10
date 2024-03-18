@@ -1,5 +1,3 @@
-// CHARTT
-
 const ctx = document.getElementById("myChart");
 // Bar Char
 const plugin = {
@@ -14,19 +12,19 @@ const plugin = {
   },
 };
 const data = {
-  labels: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli"],
+  labels: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli",'Agustus','September','Oktober','November','Desember'],
   datasets: [
     {
-      label: "My First Dataset",
-      data: [65, 59, 80, 81, 56, 55, 40],
+      label: "Laporan Siswa Bulanan",
+      data: [65, 60, 60, 81, 56, 55, 40,59, 80, 81, 56, 55, 40],
       backgroundColor: [
-        "#D946EF",
-        "#D946EF",
-        "#D946EF",
-        "#D946EF",
-        "#D946EF",
-        "#D946EF",
-        "#D946EF",
+        "lightblue",
+        "lightblue",
+        "lightblue",
+        "lightblue",
+        "lightblue",
+        "lightblue",
+        "lightblue",
       ],
     },
   ],

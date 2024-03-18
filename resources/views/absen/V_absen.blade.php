@@ -17,6 +17,9 @@
                     <a href="{{ route('absen.instruktur') }}" class="btn btn-success mb-3"><i
                             class="fa-solid fa-plus bold"></i>
                         Tambah</a>
+                    <a href="{{ route('absen.export') }}" class="btn btn-success mb-3"><i
+                            class="fa-solid fa-circle-down bold"></i>
+                        Download</a>
                     <table id="example" class="display hover" style="width: 100%">
                         <thead>
                             <tr>

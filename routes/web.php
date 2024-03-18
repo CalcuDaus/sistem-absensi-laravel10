@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function () {
 
         // Instuktur 
         Route::get('/absen', [AbsenController::class, 'index'])->name('absen');
+        Route::get('/absen/export/excel', [AbsenController::class, 'export_excel'])->name('absen.export');
         Route::get('/absen/instruktur', [SiteController::class, 'instrukturAbsen'])->name('absen.instruktur');
         Route::post('/absen/instruktur', [AbsenController::class, 'instrukturStore'])->name('tambah.absen.instruktur');
         Route::post('/tambah/dibaca/', [SiteController::class, 'notifStore'])->name('tambah.dibaca');
