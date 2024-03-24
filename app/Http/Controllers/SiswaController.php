@@ -26,6 +26,7 @@ class SiswaController extends Controller
                 'jurusan',
                 'siswas.id as id_siswa',
                 'instrukturs.nama as nama_instruktur',
+                'instrukturs.lab as lab',
                 'siswas.nama as nama_siswa',
             )
             ->get();

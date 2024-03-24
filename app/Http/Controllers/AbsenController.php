@@ -36,12 +36,10 @@ class AbsenController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'sekolah' => 'required',
-            'jurusan' => 'required',
             'siswa' => 'required'
         ]);
         if ($validator->fails()) {
-            return redirect()->route('lab')
+            return redirect()->route('lab', $request->input('nomor'))
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -107,6 +105,8 @@ class AbsenController extends Controller
             'keterangan' => 'required',
             'sub_keterangan' => 'required'
         ]);
+
+        dd($request->all());
         if ($validator->fails()) {
             return redirect()->route('absen.instruktur')
                 ->withErrors($validator)

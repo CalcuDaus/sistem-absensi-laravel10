@@ -24,7 +24,6 @@
                         </select>
                     </label>
                     <br>
-
                     <label for="jurusan"> Jurusan
                         <select name="jurusan" id="jurusan" required>
                             @foreach ($dt_jurusan as $s)
@@ -33,10 +32,12 @@
                         </select>
                     </label>
                     <br>
-
-                    <label for="siswa"> Nama Siswa
+                    <label for="nama"> Nama
                         <select name="siswa" id="siswa" required>
-                            <option selected disabled>-- Pilih Siswa ---</option>
+                            <option selected disabled>-- Pilih Nama --</option>
+                            @foreach ($dt_siswa as $s)
+                                <option value="{{ $s->siswa_id }}">{{ $s->nama_siswa }}</option>
+                            @endforeach
                         </select>
                     </label>
                     <br>
@@ -60,7 +61,7 @@
                     <button type="submit">Simpan Absen</button>
                 </form>
 
-                <script>
+                {{-- <script>
                     document.getElementById('sekolah').addEventListener('change', fetchData);
                     document.getElementById('jurusan').addEventListener('change', fetchData);
                     var base_url = document.getElementById('base_url').value;
@@ -93,7 +94,7 @@
                             })
                             .catch(error => console.error('Error:', error));
                     }
-                </script>
+                </script> --}}
             </div>
     </section>
     <!-- end section main content -->

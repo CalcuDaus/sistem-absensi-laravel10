@@ -47,8 +47,11 @@ class SiteController extends Controller
         Auth::logout();
         return redirect()->route('home');
     }
-    public function lab(Request $request)
+    public function lab(Request $request, $nomor)
     {
+        if ($nomor > 3) {
+            return view('404');
+        }
         // $clientIP = ip2long($request->getClientIp());
         // $startIP = ip2long('192.168.55.1');
         // $endIP = ip2long('192.168.55.255');
@@ -62,7 +65,10 @@ class SiteController extends Controller
             'title' => 'Sistem Absensi',
             'dt_sekolah' => Sekolah::all(),
             'dt_jurusan' => Jurusan::all(),
-            'dt_siswa' => Siswa::all()
+            'dt_siswa' => Siswa::join('instrukturs', 'siswas.instruktur_id', '=', 'instrukturs.id')
+                ->where('instrukturs.lab', '=', $nomor)
+                ->select('*', 'siswas.nama as nama_siswa', 'siswas.id as siswa_id')->get(),
+            'nomor_lab' => $nomor
         ];
 
         return view('absen.V_form_absensi', $data);
@@ -77,7 +83,9 @@ class SiteController extends Controller
             'title' => 'Sistem Absensi',
             'dt_sekolah' => Sekolah::all(),
             'dt_jurusan' => Jurusan::all(),
-            'dt_siswa' => Siswa::all()
+            'dt_siswa' => Siswa::join('instrukturs', 'siswas.instruktur_id', '=', 'instrukturs.id')
+                ->where('instrukturs.lab', '=', auth()->user()->instruktur_user_id)
+                ->select('*', 'siswas.nama as nama_siswa', 'siswas.id as siswa_id')->get()
         ];
 
         return view('absen.V_form_absen_instruktur', $data);
