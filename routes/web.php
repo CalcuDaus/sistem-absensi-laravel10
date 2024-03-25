@@ -94,6 +94,7 @@ Route::middleware('auth')->group(function () {
                 Route::get('/tambah', [SiswaController::class, 'create']);
                 Route::get('/edit/{id}', [SiswaController::class, 'edit'])->name('url.edit.siswa');
                 Route::post('/tambah', [SiswaController::class, 'store'])->name('tambah.siswa');
+                Route::post('/import/siswa', [SiswaController::class, 'import'])->name('import.siswa');
                 Route::put('/edit/{id}', [SiswaController::class, 'update'])->name('edit.siswa');
                 Route::delete('/hapus/{id}', [SiswaController::class, 'destroy'])->name('hapus.siswa');
             });

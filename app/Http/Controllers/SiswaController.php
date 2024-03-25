@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\SiswaImport;
 use App\Models\Instruktur;
 use App\Models\Jurusan;
 use App\Models\Periode;
@@ -9,6 +10,7 @@ use App\Models\Sekolah;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SiswaController extends Controller
 {
@@ -37,6 +39,10 @@ class SiswaController extends Controller
             'c_notif' => $count_notif,
             'title' => 'Master Data',
             'dt_siswa' => $dt_siswa,
+            'dt_sekolah' => Sekolah::all(),
+            'dt_jurusan' => Jurusan::all(),
+            'dt_periode' => Periode::all(),
+            'dt_instruktur' => Instruktur::all()
         ];
 
 
@@ -162,5 +168,18 @@ class SiswaController extends Controller
             return redirect()->route('siswa')->with(['success' => 'Data Berhasil Di Hapus !']);
         }
         return redirect()->route('siswa')->withErrors(['error' => 'Data Gagal Di Hapus !']);
+    }
+    public function import(Request $request)
+    {
+        $file = $request->file('file');
+        $gelombang = $request->input('gelombang');
+        $instruktur = $request->input('instruktur');
+        $sekolah = $request->input('sekolah');
+        $jurusan = $request->input('jurusan');
+        $periode = $request->input('periode');
+
+        Excel::import(new SiswaImport($gelombang, $instruktur, $sekolah, $jurusan, $periode), $file);
+
+        return redirect()->back()->with('success', 'Excel imported successfully');
     }
 }
